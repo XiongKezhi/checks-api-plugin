@@ -9,6 +9,7 @@ import io.jenkins.plugins.checks.api.ChecksPublisher;
 import io.jenkins.plugins.checks.api.ChecksPublisherFactory;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -44,7 +45,7 @@ import java.util.Optional;
  */
 public class CapturingChecksPublisher extends ChecksPublisher {
 
-    private final List<ChecksDetails> publishedChecks = new ArrayList<>();
+    private final List<ChecksDetails> publishedChecks = Collections.synchronizedList(new ArrayList<>());
 
     @Override
     public void publish(final ChecksDetails details) {
